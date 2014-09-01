@@ -1,0 +1,32 @@
+php:
+  build: containers/php
+  command: /opt/start_php_fpm.sh
+  volumes:
+    - drupal:/srv/http/drupal
+    - modules:/srv/http/modules
+    - themes:/srv/http/themes
+    - libraries:/srv/http/libraries
+    - log:/log
+  links:
+    - db
+nginx: 
+  build: containers/nginx
+  links:
+    - php
+  volumes:
+    - ssl:/usr/local/ssl
+    - log:/log
+    - drupal:/srv/http/drupal
+    - modules:/srv/http/modules
+    - themes:/srv/http/themes
+    - libraries:/srv/http/libraries
+  command: /start_nginx.sh
+  ports:
+    - "80:80"
+    - "443:443"
+db:
+  image: orchardup/mysql
+  environment:
+    MYSQL_DATABASE: drupal
+
+# vi: set tabstop=2 expandtab :
