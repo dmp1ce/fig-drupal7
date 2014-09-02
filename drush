@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Run a drush command in the running fig system
+ALL_PARAMS="$@"
+fig run --rm php /bin/bash -c "drush -r /srv/http/drupal $ALL_PARAMS"

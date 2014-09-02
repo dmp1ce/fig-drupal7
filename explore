@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Run \`cd /srv/http/drupal\` to enter the Drupal root directory where drush will work."
+fig run --rm php /bin/bash
