@@ -15,7 +15,7 @@ Use `git clone --recursive` to download the project because of the Drupal submod
 
 Use `fig up -d` build and start the project. (If you modify anything in the containers folder, then you should run `fig build`)
 
-The Drupal website should be available at (http://localhost/)  You'll want to go to (http://localhost/install.php) for the time loading the site.
+The Drupal website should be available at (http://localhost/)  You'll want to go to (http://localhost/install.php) for the first time loading the site.
 
 ## Running and stoping containers
 
