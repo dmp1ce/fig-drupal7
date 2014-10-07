@@ -1,4 +1,4 @@
-FROM base/archlinux
+FROM drupal7_source
 MAINTAINER David Parrish <daveparrish@gmail.com>
 
 RUN pacman -Syq --noconfirm nginx

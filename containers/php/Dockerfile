@@ -1,4 +1,4 @@
-FROM base/archlinux
+FROM drupal7_source
 MAINTAINER David Parrish <daveparrish@gmail.com>
 
 # Install PHP
@@ -11,6 +11,8 @@ RUN sed -i 's/;extension=pdo_sqlite.so/extension=pdo_sqlite.so/g' /etc/php/php.i
 RUN sed -i 's/;extension=gd.so/extension=gd.so/g' /etc/php/php.ini
 RUN sed -i 's/;extension=openssl.so/extension=openssl.so/g' /etc/php/php.ini
 RUN sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /etc/php/php.ini
+RUN sed -i 's/;mbstring.http_input =/mbstring.http_input = pass/g' /etc/php/php.ini
+RUN sed -i 's/;mbstring.http_output =/mbstring.http_output = pass/g' /etc/php/php.ini
 
 # Configure PHP-FPM listening port
 RUN sed -i '/^listen/c \

@@ -2,11 +2,9 @@ php:
   build: containers/php
   command: /opt/start_php_fpm.sh
   volumes:
-    - drupal:/srv/http/drupal
-    - modules:/srv/http/modules
-    - themes:/srv/http/themes
-    - libraries:/srv/http/libraries
     - log:/log
+  volumes_from:
+    - drupal7Data
   links:
     - db
 nginx: 
@@ -16,14 +14,17 @@ nginx:
   volumes:
     - ssl:/usr/local/ssl
     - log:/log
-    - drupal:/srv/http/drupal
-    - modules:/srv/http/modules
-    - themes:/srv/http/themes
-    - libraries:/srv/http/libraries
+  volumes_from:
+    - drupal7Data
   command: /start_nginx.sh
   ports:
     - "80:80"
     - "443:443"
+drupal7Data:
+  image: base/archlinux
+  volumes:
+    - /srv/http/drupal/sites/default/files
+  command: chown http:http /srv/http/drupal/sites/default/files
 db:
   image: orchardup/mysql
   environment:
