@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Build the source conatiner first.
-./containers/drupal7_source/build.sh
+# echo command.
+set -o verbose
 
-fig build
+# Build the source conatiner first.
+./containers/drupal7_source/build.sh "$@"
+
+fig build "$@"

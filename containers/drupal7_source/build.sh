@@ -2,4 +2,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-docker build -t drupal7_source $DIR/.
+docker build "$@" -t drupal7_source $DIR/.
