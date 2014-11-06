@@ -1,3 +1,6 @@
 [submodule "drupal"]
 	path = drupal
 	url = https://github.com/dmp1ce/fig-drupal-core.git
+[submodule "containers/drupal7_source/drupal"]
+	path = containers/drupal7_source/drupal
+	url = http://git.drupal.org/project/drupal.git
