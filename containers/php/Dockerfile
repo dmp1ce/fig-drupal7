@@ -21,11 +21,12 @@ listen = 0.0.0.0:9000' /etc/php/php-fpm.conf
 # Install drush (and drush dependencies)
 # mariadb required for "drush sqlc"
 RUN pacman -Syq --needed --noconfirm base-devel git jshon mariadb \
-    >/dev/null 2>/dev/null
-# Get Packer to help with installing from AUR
-RUN git clone https://github.com/keenerd/packer.git /opt/packer
-RUN chmod +x /opt/packer/packer
-RUN /opt/packer/packer -S --noedit --noconfirm drush
+>/dev/null 2>/dev/null
+
+# Get AUR helper to install drush
+RUN git clone https://github.com/oshazard/apacman /opt/apacman \
+&& chmod +x /opt/apacman/apacman \
+&& /opt/apacman/apacman -S --noedit --noconfirm drush
 # Set HOME and open_basedir so that drush doesn't complain
 ENV HOME /root
 RUN mkdir /root/.drush
