@@ -2,7 +2,10 @@
 FROM base/archlinux
 MAINTAINER David Parrish <daveparrish@gmail.com>
 
-RUN pacman -Syuq --noconfirm
+# Update mirrors and all packages
+ADD mirrorlist /etc/pacman.d/mirrorlist.new
+RUN rankmirrors -n 6 /etc/pacman.d/mirrorlist.new > /etc/pacman.d/mirrorlist \
+&& pacman -Syuq --noconfirm && pacman-db-upgrade
 
 ADD drupal /srv/http/drupal
 ADD modules /srv/http/drupal/sites/all/modules
